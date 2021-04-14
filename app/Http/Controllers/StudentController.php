@@ -18,8 +18,9 @@ class StudentController extends Controller
     public function showAllStudent()
     {
         //$x = DB::table('students')->get();
-        $x = Student::all();
-        return view('showAll',['allStudent' => $x]);
+        $allStudent = Student::all();
+        //return view('showAll',['allStudent' => $x]);
+        return view('showAll',compact('allStudent'));
     
     } 
 
@@ -51,7 +52,7 @@ class StudentController extends Controller
     {
         //$x = DB::table('students')->where('id', $id)->first();
 
-        $x = Student::findOrFail($id);
+        $x = Student::findOrFail($id)->first();
         return view('singleStudent',['s' => $x]);
     }
 
@@ -59,9 +60,9 @@ class StudentController extends Controller
     public function editStudent($id)
     {
         //$y = DB::table('students')->where('id', $id)->first();
-        $x = Student::findOrFail($id);
-        //return view('editStudent',compact('e'));
-        return view('showAll',['e' => $x]);
+        $e = Student::findOrFail($id);
+        return view('editStudent',compact('e'));
+        //return view('showAll',['e' => $x]);
         
     }
 
